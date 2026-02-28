@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تَعَلَّم - Apprends l'arabe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗣️</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1 class="app-title">تَعَلَّم</h1>
+                <span class="app-subtitle">MSA Conversationnel</span>
+            </div>
+            <div class="header-right">
+                <span class="level-badge" id="levelBadge">A1</span>
+                <button class="icon-btn" id="themeToggle" aria-label="Changer de thème">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text" id="progressText">0/10</span>
+        </div>
+
+        <!-- Main Card -->
+        <main class="dialogue-card" id="dialogueCard">
+            <!-- Context -->
+            <div class="context-badge" id="contextBadge">
+                <span class="context-emoji">👋</span>
+                <span class="context-text">Salutations</span>
+            </div>
+
+            <!-- Arabic Phrase -->
+            <div class="phrase-section">
+                <p class="arabic-phrase" id="arabicPhrase">كَيْفَ حَالُكَ؟</p>
+                <p class="transliteration" id="transliteration">kayfa ḥāluka?</p>
+            </div>
+
+            <!-- Listen Button -->
+            <button class="listen-btn" id="listenBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+                Écouter
+            </button>
+
+            <!-- Translation (hidden by default, revealed on tap) -->
+            <div class="translation-section" id="translationSection">
+                <button class="reveal-btn" id="revealBtn">Voir la traduction</button>
+                <p class="translation" id="translation">Comment vas-tu ?</p>
+            </div>
+
+            <!-- Response Options -->
+            <div class="response-section" id="responseSection">
+                <p class="response-prompt">Comment répondrais-tu ?</p>
+                <div class="response-options" id="responseOptions">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Navigation -->
+        <nav class="nav-buttons">
+            <button class="nav-btn secondary" id="prevBtn" disabled>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                Précédent
+            </button>
+            <button class="nav-btn primary" id="nextBtn">
+                Suivant
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Lesson Complete Modal -->
+        <div class="modal-overlay" id="completeModal">
+            <div class="modal-content">
+                <span class="modal-emoji">🎉</span>
+                <h2 class="modal-title">Leçon terminée !</h2>
+                <p class="modal-text" id="modalText">Tu as appris 10 nouvelles phrases.</p>
+                <div class="modal-stats">
+                    <div class="stat">
+                        <span class="stat-value" id="statCorrect">8</span>
+                        <span class="stat-label">Correctes</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="statTime">5:32</span>
+                        <span class="stat-label">Temps</span>
+                    </div>
+                </div>
+                <button class="modal-btn" id="nextLessonBtn">Leçon suivante</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dialogues.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
